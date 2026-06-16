@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AquaNet — Bescheidmanagement</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --primary: #005A8E;
+    --primary-light: #00A0C6;
+    --accent: #F5A623;
+    --bg: #F0F4F8;
+    --sidebar-bg: #003D62;
+    --card: #ffffff;
+    --text: #1a2b3c;
+    --text-muted: #6b7a8d;
+    --border: #dde3ea;
+    --green: #10b981;
+    --red: #ef4444;
+    --amber: #f59e0b;
+    --sidebar-w: 220px;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); display: flex; min-height: 100vh; font-size: 13px; }
+
+  /* SIDEBAR */
+  .sidebar { width: var(--sidebar-w); background: var(--sidebar-bg); color: #fff; display: flex; flex-direction: column; position: fixed; top: 0; left: 0; height: 100vh; z-index: 100; }
+  .sidebar-logo { padding: 20px 16px 12px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .sidebar-logo .company-name { font-size: 14px; font-weight: 700; color: #fff; line-height: 1.3; }
+  .sidebar-logo .company-sub  { font-size: 10px; color: rgba(255,255,255,0.5); margin-top: 2px; }
+  .sidebar-logo .badge { display: inline-block; background: var(--accent); color: #fff; font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 10px; margin-top: 6px; }
+  .nav { flex: 1; padding: 12px 0; }
+  .nav-section { font-size: 9px; font-weight: 700; letter-spacing: 0.08em; color: rgba(255,255,255,0.35); padding: 12px 16px 4px; text-transform: uppercase; }
+  .nav-item { display: flex; align-items: center; gap: 10px; padding: 9px 16px; cursor: pointer; color: rgba(255,255,255,0.65); transition: all 0.15s; font-size: 12px; border-left: 3px solid transparent; }
+  .nav-item:hover { background: rgba(255,255,255,0.08); color: #fff; }
+  .nav-item.active { background: rgba(255,255,255,0.12); color: #fff; border-left-color: var(--accent); font-weight: 600; }
+  .nav-item .icon { width: 16px; text-align: center; font-size: 14px; }
+  .nav-badge { margin-left: auto; background: var(--red); color: #fff; font-size: 9px; padding: 1px 5px; border-radius: 8px; font-weight: 700; }
+  .nav-badge.amber { background: var(--amber); }
+
+  /* MAIN */
+  .main { margin-left: var(--sidebar-w); flex: 1; display: flex; flex-direction: column; min-height: 100vh; }
+  .topbar { background: var(--card); border-bottom: 1px solid var(--border); padding: 0 24px; height: 52px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 50; }
+  .page-title { font-size: 15px; font-weight: 700; color: var(--text); }
+  .topbar-right { display: flex; align-items: center; gap: 12px; }
+  .status-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+  .status-label { font-size: 11px; color: var(--text-muted); }
+  .content { padding: 20px 24px; flex: 1; }
+
+  /* PAGES */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  /* KPI GRID */
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-bottom: 20px; }
+  .kpi-card { background: var(--card); border-radius: 10px; padding: 16px; border: 1px solid var(--border); }
+  .kpi-label { font-size: 10px; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+  .kpi-value { font-size: 28px; font-weight: 700; color: var(--text); margin: 4px 0 2px; line-height: 1; }
+  .kpi-sub { font-size: 11px; color: var(--text-muted); }
+  .kpi-card.green .kpi-value { color: var(--green); }
+  .kpi-card.red .kpi-value   { color: var(--red); }
+  .kpi-card.amber .kpi-value { color: var(--amber); }
+  .kpi-card.blue .kpi-value  { color: var(--primary); }
+
+  /* CHARTS */
+  .chart-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .chart-card { background: var(--card); border-radius: 10px; padding: 16px; border: 1px solid var(--border); }
+  .chart-card h3 { font-size: 12px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+  .chart-wrap { position: relative; height: 180px; }
+
+  /* TABLES */
+  .table-card { background: var(--card); border-radius: 10px; border: 1px solid var(--border); overflow: hidden; margin-bottom: 16px; }
+  .table-header { padding: 14px 16px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); }
+  .table-header h3 { font-size: 13px; font-weight: 700; }
+  .table-header input { border: 1px solid var(--border); border-radius: 6px; padding: 5px 10px; font-size: 11px; outline: none; width: 200px; }
+  .table-header input:focus { border-color: var(--primary-light); }
+  table { width: 100%; border-collapse: collapse; font-size: 11px; }
+  thead th { background: #f8fafc; padding: 8px 12px; text-align: left; font-weight: 700; color: var(--text-muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; border-bottom: 1px solid var(--border); }
+  tbody tr { border-bottom: 1px solid #f1f5f9; transition: background 0.1s; }
+  tbody tr:hover { background: #f8fafc; }
+  tbody td { padding: 8px 12px; color: var(--text); }
+  tbody td:first-child { font-weight: 600; }
+
+  /* BADGES */
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 10px; font-weight: 600; }
+  .badge-green  { background: #d1fae5; color: #065f46; }
+  .badge-amber  { background: #fef3c7; color: #92400e; }
+  .badge-red    { background: #fee2e2; color: #991b1b; }
+  .badge-blue   { background: #dbeafe; color: #1e40af; }
+  .badge-gray   { background: #f3f4f6; color: #374151; }
+
+  /* MODULE PAGE */
+  .module-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  .module-card { background: var(--card); border-radius: 10px; padding: 18px; border: 1px solid var(--border); border-top: 4px solid; }
+  .module-card.done   { border-top-color: var(--green); }
+  .module-card.active-m { border-top-color: var(--primary); }
+  .module-card.planned { border-top-color: var(--border); }
+  .module-num  { font-size: 10px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+  .module-name { font-size: 14px; font-weight: 700; margin: 4px 0 6px; }
+  .module-desc { font-size: 11px; color: var(--text-muted); line-height: 1.5; }
+  .module-status { margin-top: 12px; }
+  .module-bar { height: 4px; background: #e5e7eb; border-radius: 2px; overflow: hidden; margin-top: 4px; }
+  .module-fill { height: 100%; border-radius: 2px; }
+  .module-fill.green  { background: var(--green); }
+  .module-fill.blue   { background: var(--primary); }
+  .module-fill.gray   { background: #d1d5db; }
+  .module-progress-label { font-size: 10px; color: var(--text-muted); display: flex; justify-content: space-between; }
+
+  /* LABOR */
+  .grenzwert-ok  { color: var(--green); font-weight: 700; }
+  .grenzwert-nok { color: var(--red);   font-weight: 700; }
+
+  /* SECTION TITLE */
+  .section-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 12px; margin-top: 4px; }
+  .section-sub   { font-size: 11px; color: var(--text-muted); margin-bottom: 16px; margin-top: -8px; }
+
+  /* CATALOG PAGE */
+  .kat-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 16px; }
+  .kat-card { background: var(--card); border-radius: 8px; padding: 12px; border: 1px solid var(--border); border-left: 4px solid; }
+  .kat-id   { font-size: 10px; font-weight: 700; color: var(--text-muted); }
+  .kat-type { font-size: 12px; font-weight: 700; margin: 3px 0 4px; }
+  .kat-zs   { font-size: 10px; color: var(--primary); }
+  .kat-syn  { font-size: 10px; color: var(--text-muted); margin-top: 4px; font-style: italic; }
+
+  /* SETTINGS PAGE */
+  .settings-card { background: var(--card); border-radius: 10px; border: 1px solid var(--border); padding: 24px; max-width: 560px; margin-bottom: 16px; }
+  .settings-card h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .settings-card p  { font-size: 11px; color: var(--text-muted); margin-bottom: 16px; }
+  .form-group { margin-bottom: 14px; }
+  .form-group label { display: block; font-size: 11px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.04em; }
+  .form-group input { width: 100%; border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; font-size: 12px; font-family: monospace; outline: none; }
+  .form-group input:focus { border-color: var(--primary-light); }
+  .btn { background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: 8px 18px; font-size: 12px; font-weight: 700; cursor: pointer; }
+  .btn:hover { background: var(--primary-light); }
+  .btn-sm { padding: 5px 12px; font-size: 11px; }
+  .alert { padding: 8px 14px; border-radius: 6px; font-size: 11px; margin-top: 10px; display: none; }
+  .alert-green { background: #d1fae5; color: #065f46; }
+  .alert-red   { background: #fee2e2; color: #991b1b; }
+
+  /* MODUL 1 PAGE */
+  .upload-zone { background: var(--card); border: 2px dashed var(--border); border-radius: 10px; padding: 32px; text-align: center; margin-bottom: 20px; cursor: pointer; transition: border-color 0.2s; }
+  .upload-zone:hover { border-color: var(--primary-light); }
+  .upload-zone input[type=file] { display: none; }
+  .upload-zone .upload-icon { font-size: 32px; margin-bottom: 8px; }
+  .upload-zone p { font-size: 12px; color: var(--text-muted); }
+  .upload-zone strong { color: var(--primary); cursor: pointer; }
+  .konfidenz-bar { height: 6px; border-radius: 3px; background: #e5e7eb; overflow: hidden; margin-top: 3px; }
+  .konfidenz-fill { height: 100%; border-radius: 3px; }
+  .result-header { background: var(--card); border-radius: 10px; border: 1px solid var(--border); padding: 16px 20px; margin-bottom: 14px; display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  .result-stat { text-align: center; }
+  .result-stat .val { font-size: 22px; font-weight: 700; }
+  .result-stat .lbl { font-size: 10px; color: var(--text-muted); text-transform: uppercase; }
+  .spinner { display: inline-block; width: 16px; height: 16px; border: 2px solid #fff; border-top-color: transparent; border-radius: 50%; animation: spin 0.7s linear infinite; vertical-align: middle; margin-right: 6px; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="company-name">AquaNet Infrastruktur<br>GmbH</div>
+    <div class="company-sub">Bescheidmanagement</div>
+    <div class="badge">SYNTHETIC</div>
+  </div>
+  <div class="nav">
+    <div class="nav-section">Übersicht</div>
+    <div class="nav-item active" onclick="showPage('dashboard', this)">
+      <span class="icon">📊</span> Dashboard
+    </div>
+
+    <div class="nav-section">Datenbank</div>
+    <div class="nav-item" onclick="showPage('bescheide', this)">
+      <span class="icon">📋</span> Bescheide
+      <span class="nav-badge amber" id="badge-offen">-</span>
+    </div>
+    <div class="nav-item" onclick="showPage('gsa', this)">
+      <span class="icon">🏗️</span> GSA / Objekte
+    </div>
+    <div class="nav-item" onclick="showPage('auflagen', this)">
+      <span class="icon">📌</span> Auflagen
+    </div>
+    <div class="nav-item" onclick="showPage('labor', this)">
+      <span class="icon">🔬</span> Labor
+      <span class="nav-badge red" id="badge-labor">-</span>
+    </div>
+
+    <div class="nav-section">KI-Tools</div>
+    <div class="nav-item" onclick="showPage('modul1', this)">
+      <span class="icon">🤖</span> Modul 1 — KI-Analyse
+    </div>
+
+    <div class="nav-section">System</div>
+    <div class="nav-item" onclick="showPage('katalog', this)">
+      <span class="icon">📚</span> Auflagenkatalog
+    </div>
+    <div class="nav-item" onclick="showPage('module', this)">
+      <span class="icon">⚙️</span> Module / Tools
+    </div>
+    <div class="nav-item" onclick="showPage('einstellungen', this)">
+      <span class="icon">🔑</span> Einstellungen
+    </div>
+  </div>
+</nav>
+
+<div class="main">
+  <div class="topbar">
+    <div class="page-title" id="page-title">Dashboard</div>
+    <div class="topbar-right">
+      <div class="status-dot"></div>
+      <div class="status-label">Synthetic Data — AquaNet GmbH</div>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div id="page-dashboard" class="page active">
+      <div class="kpi-grid" id="kpi-grid"></div>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <h3>Bescheidstatus</h3>
+          <div class="chart-wrap"><canvas id="chartStatus"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Auflagen nach Zielsystem</h3>
+          <div class="chart-wrap"><canvas id="chartZielsystem"></canvas></div>
+        </div>
+      </div>
+      <div class="chart-grid">
+        <div class="chart-card">
+          <h3>Labor — Grenzwerteinhaltung</h3>
+          <div class="chart-wrap"><canvas id="chartLabor"></canvas></div>
+        </div>
+        <div class="chart-card">
+          <h3>Auflagen nach Kategorie</h3>
+          <div class="chart-wrap"><canvas id="chartKat"></canvas></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BESCHEIDE -->
+    <div id="page-bescheide" class="page">
+      <div class="table-card">
+        <div class="table-header">
+          <h3>Bescheide</h3>
+          <input type="text" id="filter-bescheide" placeholder="Suchen..." oninput="filterTable('tbl-bescheide', this.value)">
+        </div>
+        <table id="tbl-bescheide">
+          <thead><tr>
+            <th>Bescheid-ID</th><th>GZ</th><th>Behörde</th><th>Art</th>
+            <th>Region</th><th>ABM</th><th>km von</th><th>km bis</th>
+            <th>Befristung</th><th>Status</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- GSA -->
+    <div id="page-gsa" class="page">
+      <div class="table-card">
+        <div class="table-header">
+          <h3>Gewässerschutzanlagen (GSA)</h3>
+          <input type="text" id="filter-gsa" placeholder="Suchen..." oninput="filterTable('tbl-gsa', this.value)">
+        </div>
+        <table id="tbl-gsa">
+          <thead><tr>
+            <th>GSA-ID</th><th>Bescheid-ID</th><th>GSA-Name</th>
+            <th>Ausleitungstyp</th><th>Region</th><th>Strecke</th><th>Status</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AUFLAGEN -->
+    <div id="page-auflagen" class="page">
+      <div class="table-card">
+        <div class="table-header">
+          <h3>Auflagen</h3>
+          <input type="text" id="filter-auflagen" placeholder="Suchen..." oninput="filterTable('tbl-auflagen', this.value)">
+        </div>
+        <table id="tbl-auflagen">
+          <thead><tr>
+            <th>Auflage-ID</th><th>Bescheid-ID</th><th>Auflagentyp</th>
+            <th>Zielsystem</th><th>GSA</th><th>Frist</th><th>Intervall</th><th>Status</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- LABOR -->
+    <div id="page-labor" class="page">
+      <div class="table-card">
+        <div class="table-header">
+          <h3>Laborgrenzwerte</h3>
+          <input type="text" id="filter-labor" placeholder="Suchen..." oninput="filterTable('tbl-labor', this.value)">
+        </div>
+        <table id="tbl-labor">
+          <thead><tr>
+            <th>Labor-ID</th><th>Bescheid-ID</th><th>GSA</th><th>Parameter</th>
+            <th>Grenzwert</th><th>Messwert</th><th>Einheit</th><th>Eingehalten</th>
+          </tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- KATALOG -->
+    <div id="page-katalog" class="page">
+      <div class="section-title">Auflagenkatalog</div>
+      <div class="section-sub">Katalogisierte Auflagentypen — Basis für KI-Klassifikation</div>
+      <div class="kat-grid" id="kat-grid"></div>
+    </div>
+
+    <!-- MODULE -->
+    <div id="page-module" class="page">
+      <div class="section-title">Produktmodule — AI Domain System Generator</div>
+      <div class="section-sub">Übersicht aller Komponenten und ihr aktueller Entwicklungsstand</div>
+      <div class="module-grid" id="module-grid"></div>
+    </div>
+
+    <!-- MODUL 1 -->
+    <div id="page-modul1" class="page">
+      <div class="section-title">Modul 1 — KI Bescheid-Analyse</div>
+      <div class="section-sub">PDF hochladen → Claude AI erkennt Auflagen → automatische Katalog-Zuordnung</div>
+
+      <div class="upload-zone" id="upload-zone">
+        <input type="file" id="pdf-input" accept=".pdf" onchange="uploadBescheid(this)">
+        <div class="upload-icon">📄</div>
+        <p><strong>PDF auswählen</strong> oder hier ablegen</p>
+        <p style="margin-top:4px;font-size:10px">Wasserrechtsbescheid · Bewilligungsbescheid · Änderungsbescheid</p>
+      </div>
+
+      <div id="m1-status" style="display:none" class="alert alert-green">Bereit</div>
+      <div id="m1-result" style="display:none">
+        <div class="result-header" id="m1-summary"></div>
+        <div class="table-card">
+          <div class="table-header"><h3>Erkannte Auflagen</h3></div>
+          <table>
+            <thead><tr>
+              <th>Nr.</th><th>Originaltext</th><th>Katalog-ID</th>
+              <th>Auflagentyp</th><th>Zielsystem</th><th>Konfidenz</th><th>Status</th>
+            </tr></thead>
+            <tbody id="m1-tbody"></tbody>
+          </table>
+        </div>
+        <div id="m1-nicht" style="display:none" class="table-card" style="margin-top:12px">
+          <div class="table-header"><h3>Nicht zuordenbar</h3></div>
+          <table>
+            <thead><tr><th>Originaltext</th><th>Grund</th></tr></thead>
+            <tbody id="m1-nicht-tbody"></tbody>
+          </table>
+        </div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:8px" id="m1-api-info"></div>
+      </div>
+    </div>
+
+    <!-- EINSTELLUNGEN -->
+    <div id="page-einstellungen" class="page">
+      <div class="section-title">Einstellungen</div>
+      <div class="section-sub">API-Konfiguration für KI-Module</div>
+
+      <div class="settings-card">
+        <h3>🔑 Anthropic API-Key</h3>
+        <p>Wird lokal in config.json gespeichert. Niemals an externe Server übertragen.</p>
+        <div class="form-group">
+          <label>API-Key</label>
+          <input type="password" id="api-key-input" placeholder="sk-ant-api03-..." autocomplete="off">
+        </div>
+        <button class="btn btn-sm" onclick="saveApiKey()">Speichern</button>
+        <div id="key-status" style="font-size:11px;color:var(--text-muted);margin-top:8px"></div>
+        <div id="save-alert" class="alert"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+const MODULES = [
+  { num:"Modul 0", name:"Synthetic Company Generator", icon:"🏭",
+    desc:"Erzeugt vollständige synthetische Testunternehmen mit Bescheiden, GSA, Auflagen, Labor und Dokumenten.",
+    status:"done", progress:100, detail:"15 Bescheide · 35 GSA · 165 Auflagen generiert" },
+  { num:"Modul 1", name:"Customer Tool Generator", icon:"🔧",
+    desc:"Analysiert Unternehmensunterlagen und leitet daraus Datenmodell, Kataloge, Workflows und Zielsysteme ab.",
+    status:"active-m", progress:20, detail:"Katalogschema definiert · PDF-Parsing in Planung" },
+  { num:"Modul 2", name:"Historical Data Migration Engine", icon:"📦",
+    desc:"Importiert PDF, Excel, CSV und Datenbankexporte und befüllt das freigegebene Datenmodell.",
+    status:"planned", progress:0, detail:"Geplant nach Modul 1" },
+  { num:"Modul 3", name:"Bescheid Processing Engine", icon:"📄",
+    desc:"Verarbeitet neue Bescheide: KI liest → Vorschlag → Prüfung → Freigabe → Datenbankupdate → Aufgaben.",
+    status:"planned", progress:0, detail:"Abhängig von Modul 1" },
+  { num:"Modul 4", name:"Continuous Improvement Engine", icon:"🔄",
+    desc:"Analysiert neue Dokumente und erkennt neue Auflagentypen, Felder und Dashboards — nur Vorschläge.",
+    status:"planned", progress:0, detail:"Geplant nach Modul 3" },
+  { num:"Modul 5", name:"Tender & Proposal Engine", icon:"📝",
+    desc:"Analysiert Ausschreibungen und erstellt Compliance-Matrix, Angebotsstruktur und Risikobewertung.",
+    status:"planned", progress:0, detail:"Langfristig geplant" },
+];
+
+const COLORS = {
+  "EBeH":                    "#1d4ed8",
+  "EBauH":                   "#dc2626",
+  "GUSTAV":                  "#059669",
+  "Probenahmeübersichtsplan":"#d97706",
+  "GIS":                     "#7c3aed",
+  "DOXIS":                   "#0d9488",
+};
+
+const STATUS_COLORS = {
+  "Produktiv":       "#10b981",
+  "Prüfung offen":   "#f59e0b",
+  "In Bearbeitung":  "#3b82f6",
+  "Zurückgewiesen":  "#ef4444",
+};
+
+const KAT_COLORS = {
+  "Bau":             "#dc2626",
+  "Betrieb Wasser":  "#1d4ed8",
+  "Grünflächen":     "#059669",
+  "Labor":           "#d97706",
+  "GIS":             "#7c3aed",
+};
+
+function statusBadge(s) {
+  const map = {
+    "Produktiv":      "badge-green",
+    "Prüfung offen":  "badge-amber",
+    "In Bearbeitung": "badge-blue",
+    "Zurückgewiesen": "badge-red",
+    "Ja":             "badge-green",
+    "NEIN":           "badge-red",
+  };
+  return `<span class="badge ${map[s] || 'badge-gray'}">${s}</span>`;
+}
+
+function showPage(id, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  el.classList.add('active');
+  const titles = {
+    dashboard:'Dashboard', bescheide:'Bescheide', gsa:'GSA / Objekte',
+    auflagen:'Auflagen', labor:'Labor', katalog:'Auflagenkatalog',
+    module:'Produktmodule', modul1:'Modul 1 — KI Bescheid-Analyse',
+    einstellungen:'Einstellungen'
+  };
+  document.getElementById('page-title').textContent = titles[id] || id;
+  if (id === 'einstellungen') loadSettings();
+}
+
+function filterTable(tblId, q) {
+  const rows = document.querySelectorAll(`#${tblId} tbody tr`);
+  q = q.toLowerCase();
+  rows.forEach(r => {
+    r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+async function loadDashboard() {
+  const kpis = await fetch('/api/kpis').then(r => r.json());
+
+  // badges
+  document.getElementById('badge-offen').textContent = kpis.bescheide_offen;
+  document.getElementById('badge-labor').textContent = kpis.labor_nok;
+
+  // KPI cards
+  const laborPct = kpis.labor_gesamt > 0 ? Math.round(kpis.labor_ok / kpis.labor_gesamt * 100) : 0;
+  document.getElementById('kpi-grid').innerHTML = `
+    <div class="kpi-card blue">
+      <div class="kpi-label">Bescheide gesamt</div>
+      <div class="kpi-value">${kpis.bescheide_gesamt}</div>
+      <div class="kpi-sub">${kpis.bescheide_produktiv} produktiv</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">GSA / Anlagen</div>
+      <div class="kpi-value">${kpis.gsa_gesamt}</div>
+      <div class="kpi-sub">Gewässerschutzanlagen</div>
+    </div>
+    <div class="kpi-card amber">
+      <div class="kpi-label">Auflagen gesamt</div>
+      <div class="kpi-value">${kpis.auflagen_gesamt}</div>
+      <div class="kpi-sub">${kpis.auflagen_offen} offen</div>
+    </div>
+    <div class="kpi-card ${kpis.labor_nok > 0 ? 'red' : 'green'}">
+      <div class="kpi-label">Labor Compliance</div>
+      <div class="kpi-value">${laborPct}%</div>
+      <div class="kpi-sub">${kpis.labor_nok} Grenzwertüberschreitung${kpis.labor_nok !== 1 ? 'en' : ''}</div>
+    </div>
+  `;
+
+  // Chart: Status
+  new Chart(document.getElementById('chartStatus'), {
+    type: 'doughnut',
+    data: {
+      labels: Object.keys(kpis.status_counts),
+      datasets: [{ data: Object.values(kpis.status_counts),
+        backgroundColor: Object.keys(kpis.status_counts).map(s => STATUS_COLORS[s] || '#9ca3af'),
+        borderWidth: 2, borderColor: '#fff' }]
+    },
+    options: { plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } }, maintainAspectRatio: false }
+  });
+
+  // Chart: Zielsystem
+  const zs = kpis.zielsystem_counts;
+  new Chart(document.getElementById('chartZielsystem'), {
+    type: 'bar',
+    data: {
+      labels: Object.keys(zs),
+      datasets: [{ data: Object.values(zs),
+        backgroundColor: Object.keys(zs).map(k => COLORS[k] || '#9ca3af'),
+        borderRadius: 4 }]
+    },
+    options: { plugins: { legend: { display: false } }, scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }, maintainAspectRatio: false }
+  });
+
+  // Chart: Labor
+  new Chart(document.getElementById('chartLabor'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Eingehalten', 'Überschritten'],
+      datasets: [{ data: [kpis.labor_ok, kpis.labor_nok],
+        backgroundColor: ['#10b981', '#ef4444'], borderWidth: 2, borderColor: '#fff' }]
+    },
+    options: { plugins: { legend: { position: 'bottom', labels: { font: { size: 10 } } } }, maintainAspectRatio: false }
+  });
+
+  // Chart: Auflagen Kategorie
+  const katalog = await fetch('/api/katalog').then(r => r.json());
+  const auflagen = await fetch('/api/auflagen').then(r => r.json());
+  const katMap = {};
+  katalog.katalog.forEach(k => { katMap[k.auflagentyp] = k.fachbereich; });
+  const katCount = {};
+  auflagen.forEach(a => {
+    const fb = katMap[a.Auflagentyp] || 'Sonstige';
+    katCount[fb] = (katCount[fb] || 0) + 1;
+  });
+  new Chart(document.getElementById('chartKat'), {
+    type: 'bar',
+    data: {
+      labels: Object.keys(katCount),
+      datasets: [{ data: Object.values(katCount),
+        backgroundColor: Object.keys(katCount).map(k => KAT_COLORS[k] || '#9ca3af'),
+        borderRadius: 4 }]
+    },
+    options: { plugins: { legend: { display: false } }, indexAxis: 'y', scales: { x: { beginAtZero: true } }, maintainAspectRatio: false }
+  });
+}
+
+async function loadBescheide() {
+  const data = await fetch('/api/bescheide').then(r => r.json());
+  const tbody = document.querySelector('#tbl-bescheide tbody');
+  tbody.innerHTML = data.map(b => `<tr>
+    <td>${b.Bescheid_ID}</td>
+    <td style="font-size:10px;color:#6b7a8d">${b.GZ}</td>
+    <td>${b.Behörde || b['Behörde'] || ''}</td>
+    <td>${b.Bescheidart}</td>
+    <td>${b.Region}</td>
+    <td>${b.ABM}</td>
+    <td>${b.km_von}</td>
+    <td>${b.km_bis}</td>
+    <td style="font-size:10px">${b.Befristung_bis}</td>
+    <td>${statusBadge(b.Status)}</td>
+  </tr>`).join('');
+}
+
+async function loadGSA() {
+  const data = await fetch('/api/gsa').then(r => r.json());
+  const tbody = document.querySelector('#tbl-gsa tbody');
+  tbody.innerHTML = data.map(g => `<tr>
+    <td>${g.GSA_ID}</td>
+    <td style="font-size:10px;color:#6b7a8d">${g.Bescheid_ID}</td>
+    <td>${g.GSA_Name}</td>
+    <td>${g.Ausleitungstyp}</td>
+    <td>${g.Region}</td>
+    <td>${g.Strecke}</td>
+    <td>${statusBadge(g.Status)}</td>
+  </tr>`).join('');
+}
+
+async function loadAuflagen() {
+  const data = await fetch('/api/auflagen').then(r => r.json());
+  const tbody = document.querySelector('#tbl-auflagen tbody');
+  tbody.innerHTML = data.map(a => `<tr>
+    <td>${a.Auflage_DB_ID}</td>
+    <td style="font-size:10px;color:#6b7a8d">${a.Bescheid_ID}</td>
+    <td>${a.Auflagentyp}</td>
+    <td><span class="badge badge-blue" style="background:${(COLORS[a.Zielsystem]||'#374151')}22;color:${COLORS[a.Zielsystem]||'#374151'}">${a.Zielsystem}</span></td>
+    <td>${a.GSA_Name}</td>
+    <td style="font-size:10px">${a.Frist || '—'}</td>
+    <td style="font-size:10px;color:#6b7a8d">${a.Intervall}</td>
+    <td>${statusBadge(a.Status)}</td>
+  </tr>`).join('');
+}
+
+async function loadLabor() {
+  const data = await fetch('/api/labor').then(r => r.json());
+  const tbody = document.querySelector('#tbl-labor tbody');
+  tbody.innerHTML = data.map(l => `<tr>
+    <td>${l.Labor_ID}</td>
+    <td style="font-size:10px;color:#6b7a8d">${l.Bescheid_ID}</td>
+    <td>${l.GSA_Name}</td>
+    <td><strong>${l.Parameter}</strong></td>
+    <td style="color:#6b7a8d">${l.Grenzwert} ${l.Einheit}</td>
+    <td class="${l.Grenzwert_eingehalten === 'Ja' ? 'grenzwert-ok' : 'grenzwert-nok'}">${l.Messwert} ${l.Einheit}</td>
+    <td>${l.Einheit}</td>
+    <td>${statusBadge(l.Grenzwert_eingehalten)}</td>
+  </tr>`).join('');
+}
+
+async function loadKatalog() {
+  const data = await fetch('/api/katalog').then(r => r.json());
+  const grid = document.getElementById('kat-grid');
+  grid.innerHTML = data.katalog.map(k => `
+    <div class="kat-card" style="border-left-color:${KAT_COLORS[k.fachbereich]||'#9ca3af'}">
+      <div class="kat-id">${k.auflagen_id} · ${k.fachbereich}</div>
+      <div class="kat-type">${k.auflagentyp}</div>
+      <div class="kat-zs">→ ${k.zielsystem} · ${k.intervall}</div>
+      <div class="kat-syn">${k.synonyme.slice(0,2).join(' · ')}</div>
+    </div>
+  `).join('');
+}
+
+function loadModule() {
+  const grid = document.getElementById('module-grid');
+  grid.innerHTML = MODULES.map(m => `
+    <div class="module-card ${m.status}">
+      <div class="module-num">${m.num}</div>
+      <div class="module-name">${m.icon} ${m.name}</div>
+      <div class="module-desc">${m.desc}</div>
+      <div class="module-status">
+        <div class="module-progress-label">
+          <span>${m.status === 'done' ? 'Fertig' : m.status === 'active-m' ? 'In Entwicklung' : 'Geplant'}</span>
+          <span>${m.progress}%</span>
+        </div>
+        <div class="module-bar">
+          <div class="module-fill ${m.status === 'done' ? 'green' : m.status === 'active-m' ? 'blue' : 'gray'}" style="width:${m.progress}%"></div>
+        </div>
+        <div style="font-size:10px;color:#9ca3af;margin-top:4px">${m.detail}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ── Einstellungen ─────────────────────────────
+async function loadSettings() {
+  const s = await fetch('/api/settings').then(r => r.json());
+  const el = document.getElementById('key-status');
+  if (s.api_key_set) {
+    el.innerHTML = `<span style="color:var(--green)">✓ Key gesetzt: ${s.api_key_preview}</span>`;
+  } else {
+    el.innerHTML = `<span style="color:var(--red)">✗ Kein Key gesetzt</span>`;
+  }
+}
+
+async function saveApiKey() {
+  const key = document.getElementById('api-key-input').value.trim();
+  const alert = document.getElementById('save-alert');
+  if (!key.startsWith('sk-ant-')) {
+    alert.className = 'alert alert-red'; alert.style.display = 'block';
+    alert.textContent = 'Ungültiger Key — muss mit sk-ant- beginnen'; return;
+  }
+  const res = await fetch('/api/settings', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({anthropic_api_key: key})
+  }).then(r => r.json());
+  alert.className = 'alert alert-green'; alert.style.display = 'block';
+  alert.textContent = '✓ API-Key gespeichert';
+  document.getElementById('api-key-input').value = '';
+  loadSettings();
+}
+
+// ── Modul 1 ───────────────────────────────────
+async function uploadBescheid(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const status = document.getElementById('m1-status');
+  const result = document.getElementById('m1-result');
+  result.style.display = 'none';
+  status.style.display = 'block';
+  status.className = 'alert alert-green';
+  status.innerHTML = '<span class="spinner"></span> Claude analysiert den Bescheid...';
+
+  const form = new FormData();
+  form.append('file', file);
+
+  try {
+    const res = await fetch('/api/modul1/process', { method: 'POST', body: form });
+    if (!res.ok) {
+      const err = await res.json();
+      status.className = 'alert alert-red';
+      status.textContent = '✗ Fehler: ' + (err.detail || res.statusText);
+      return;
+    }
+    const data = await res.json();
+    status.style.display = 'none';
+    renderModul1Result(data);
+  } catch(e) {
+    status.className = 'alert alert-red';
+    status.textContent = '✗ ' + e.message;
+  }
+  input.value = '';
+}
+
+function konfidenzColor(k) {
+  if (k >= 0.90) return '#10b981';
+  if (k >= 0.70) return '#f59e0b';
+  return '#ef4444';
+}
+
+function renderModul1Result(data) {
+  const auflagen = data.auflagen || [];
+  const nicht = data.nicht_zuordenbar || [];
+  const info = data.bescheid_info || {};
+  const api = data.api_info || {};
+  const zus = data.zusammenfassung || {};
+
+  const gruen = auflagen.filter(a => a.konfidenz >= 0.90).length;
+  const gelb  = auflagen.filter(a => a.konfidenz >= 0.70 && a.konfidenz < 0.90).length;
+  const rot   = auflagen.filter(a => a.konfidenz < 0.70).length;
+
+  document.getElementById('m1-summary').innerHTML = `
+    <div class="result-stat"><div class="val" style="color:var(--primary)">${auflagen.length + nicht.length}</div><div class="lbl">Auflagen gesamt</div></div>
+    <div class="result-stat"><div class="val" style="color:var(--green)">${gruen}</div><div class="lbl">Auto (≥90%)</div></div>
+    <div class="result-stat"><div class="val" style="color:var(--amber)">${gelb}</div><div class="lbl">Prüfung (70-89%)</div></div>
+    <div class="result-stat"><div class="val" style="color:var(--red)">${rot + nicht.length}</div><div class="lbl">Manuell (&lt;70%)</div></div>
+  `;
+
+  document.getElementById('m1-tbody').innerHTML = auflagen.map(a => {
+    const k = a.konfidenz || 0;
+    const c = konfidenzColor(k);
+    return `<tr>
+      <td style="font-size:10px;color:var(--text-muted)">${a.nummer || '—'}</td>
+      <td style="font-size:10px;max-width:220px">${(a.originaltext||'').substring(0,80)}…</td>
+      <td><strong>${a.katalog_id || '—'}</strong></td>
+      <td style="font-size:11px">${a.katalog_bezeichnung || '—'}</td>
+      <td><span class="badge badge-blue" style="background:${(COLORS[a.zielsystem]||'#374151')}22;color:${COLORS[a.zielsystem]||'#374151'}">${a.zielsystem || '—'}</span></td>
+      <td style="min-width:90px">
+        <div style="font-size:11px;font-weight:700;color:${c}">${Math.round(k*100)}%</div>
+        <div class="konfidenz-bar"><div class="konfidenz-fill" style="width:${k*100}%;background:${c}"></div></div>
+      </td>
+      <td>${k>=0.90 ? '<span class="badge badge-green">Auto</span>' : k>=0.70 ? '<span class="badge badge-amber">Prüfung</span>' : '<span class="badge badge-red">Manuell</span>'}</td>
+    </tr>`;
+  }).join('');
+
+  if (nicht.length > 0) {
+    document.getElementById('m1-nicht').style.display = 'block';
+    document.getElementById('m1-nicht-tbody').innerHTML = nicht.map(n =>
+      `<tr><td style="font-size:11px">${(n.originaltext||'').substring(0,100)}</td><td style="font-size:11px;color:var(--text-muted)">${n.grund||''}</td></tr>`
+    ).join('');
+  }
+
+  const qualBadge = {gut:'badge-green', mittel:'badge-amber', schlecht:'badge-red'}[data.dokument_qualitaet] || 'badge-gray';
+  const hinweisHtml = data.hinweis ? `<span style="margin-left:12px;color:var(--text-muted)">💬 ${data.hinweis}</span>` : '';
+  document.getElementById('m1-api-info').innerHTML =
+    `Modell: ${api.model || '—'} · ${api.input_tokens || 0} Input-Tokens · ${api.output_tokens || 0} Output-Tokens · Kosten: $${api.geschaetzte_kosten_usd || 0}
+     · Dokumentqualität: <span class="badge ${qualBadge}">${data.dokument_qualitaet || '—'}</span>${hinweisHtml}`;
+
+  document.getElementById('m1-result').style.display = 'block';
+}
+
+// Drag & Drop
+(function() {
+  const zone = document.getElementById('upload-zone');
+  zone.addEventListener('click', () => document.getElementById('pdf-input').click());
+  zone.addEventListener('dragover',  e => { e.preventDefault(); e.stopPropagation(); zone.style.borderColor = 'var(--primary)'; });
+  zone.addEventListener('dragleave', e => { e.preventDefault(); zone.style.borderColor = ''; });
+  zone.addEventListener('drop', e => {
+    e.preventDefault(); e.stopPropagation();
+    zone.style.borderColor = '';
+    const file = e.dataTransfer.files[0];
+    if (file && file.type === 'application/pdf') {
+      const dt = new DataTransfer();
+      dt.items.add(file);
+      document.getElementById('pdf-input').files = dt.files;
+      uploadBescheid(document.getElementById('pdf-input'));
+    }
+  });
+})();
+
+// Init
+loadDashboard();
+loadBescheide();
+loadGSA();
+loadAuflagen();
+loadLabor();
+loadKatalog();
+loadModule();
+</script>
+</body>
+</html>

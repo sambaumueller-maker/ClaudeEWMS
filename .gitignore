@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# API Keys — NIEMALS committen
+dashboard/config.json
+.env
+
+# Generierte Outputs (groß, nicht nötig)
+training/output/
+modul1/output/
+synthetic_generator/output/
+
+# Claude intern
+.claude/

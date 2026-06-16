@@ -1,0 +1,40 @@
+{
+  "batch_name": "overnight_v1",
+  "firmen_anzahl": 50,
+  "bescheide_pro_firma": 8,
+  "max_kosten_usd": 5.0,
+  "modelle": ["claude-haiku-4-5-20251001"],
+  "domänen": [
+    {
+      "id": "WRG", "name": "Wasserrecht", "gewicht": 0.50,
+      "bescheidarten": ["Bewilligungsbescheid", "Kollaudierungsbescheid", "Änderungsbescheid", "Wiederverleihung"],
+      "behoerden": ["BH Korneuburg", "BH St. Pölten", "MA 45 Wien", "BH Wels-Land", "BH Braunau am Inn", "LH Niederösterreich", "BH Linz-Land", "BH Baden", "BH Tulln"],
+      "auflagen_themen": ["Wassermengen", "Wasserqualität", "Böschungen", "Bauphase", "GIS", "Labor", "Grünflächen"]
+    },
+    {
+      "id": "BAU", "name": "Baurecht", "gewicht": 0.25,
+      "bescheidarten": ["Baubewilligung", "Benützungsbewilligung", "Abbruchbewilligung"],
+      "behoerden": ["MA 37 Wien", "BH Graz-Umgebung", "BH Salzburg-Umgebung", "Stadtmagistrat Linz"],
+      "auflagen_themen": ["Brandschutz", "Statik", "Lärmschutz", "Abstandsflächen", "Stellplätze", "Entwässerung"]
+    },
+    {
+      "id": "UVP", "name": "UVP/Infrastruktur", "gewicht": 0.15,
+      "bescheidarten": ["UVP-Genehmigung", "Teilgenehmigung", "Änderungsgenehmigung"],
+      "behoerden": ["BMKLIMA Wien", "LH Niederösterreich", "LH Steiermark"],
+      "auflagen_themen": ["Lärm", "Erschütterungen", "Grundwasser", "Flora/Fauna", "Luft", "Boden", "Monitoring"]
+    },
+    {
+      "id": "STR", "name": "Straßenbau", "gewicht": 0.10,
+      "bescheidarten": ["Straßenbaubewilligung", "Verkehrsfreigabe"],
+      "behoerden": ["ASFINAG", "Landesstraßenverwaltung NÖ", "Landesstraßenverwaltung OÖ"],
+      "auflagen_themen": ["Entwässerung", "Lärmschutzwand", "Wildquerung", "Bepflanzung", "Beleuchtung"]
+    }
+  ],
+  "firmentypen": [
+    {"typ": "Infrastrukturbetreiber", "groesse": "groß", "mitarbeiter_range": [200, 2000]},
+    {"typ": "Bauunternehmen", "groesse": "mittel", "mitarbeiter_range": [50, 500]},
+    {"typ": "Energieversorger", "groesse": "groß", "mitarbeiter_range": [100, 1000]},
+    {"typ": "Gemeinde", "groesse": "klein", "mitarbeiter_range": [10, 100]},
+    {"typ": "Straßenerhalter", "groesse": "mittel", "mitarbeiter_range": [30, 300]}
+  ]
+}

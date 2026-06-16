@@ -189,6 +189,63 @@
       "dashboard_kategorie": "Laborprogramm", "aktiv": true
     },
     {
+      "auflagen_id": "W007", "fachbereich": "Betrieb Wasser", "zielsystem": "EBeH",
+      "auflagentyp": "Uferböschung wiederherstellen",
+      "synonyme": ["Böschungswiederherstellung", "Uferrekultivierung", "Böschungssicherung", "Dammkrone wiederherstellen"],
+      "beispielsaetze": ["Nach Abschluss der Bauarbeiten sind alle Uferböschungen und Dammkronen fachgerecht wiederherzustellen.", "Die Uferböschungen sind nach Abschluss der Arbeiten standsicher und begrünt wiederherzustellen."],
+      "massnahmentyp": "VERM2", "phase": "BAU", "intervall": "EINM",
+      "pflichtparameter": ["Abschnitt", "Herstellungsdatum", "Begrünungsart"],
+      "dashboard_kategorie": "Bauphase-Dokumentation", "aktiv": true
+    },
+    {
+      "auflagen_id": "W008", "fachbereich": "Betrieb Wasser", "zielsystem": "EBeH",
+      "auflagentyp": "Schutzstreifen freihalten",
+      "synonyme": ["Uferstreifen", "Gewässerrandstreifen", "Schutzstreifen Ufer", "Pufferstreifen"],
+      "beispielsaetze": ["Entlang der Gewässerufer ist ein Schutzstreifen von mindestens 5 Metern Breite von Bebauung freizuhalten.", "Der Gewässerrandstreifen ist dauerhaft von baulichen Anlagen freizuhalten."],
+      "massnahmentyp": "VERM", "phase": "BET", "intervall": "laufend",
+      "pflichtparameter": ["Breite_m", "Laenge_m", "Abschnitt"],
+      "dashboard_kategorie": "Naturschutz", "aktiv": true
+    },
+    {
+      "auflagen_id": "L006", "fachbereich": "Labor", "zielsystem": "Probenahmeübersichtsplan",
+      "auflagentyp": "pH-Wert messen",
+      "synonyme": ["pH-Messung", "pH-Wert bestimmen", "Säuregrad messen", "Wasserqualität pH"],
+      "beispielsaetze": ["Der pH-Wert des eingeleiteten Wassers ist wöchentlich zu messen.", "Der pH-Wert ist monatlich zu kontrollieren und darf den Bereich 6,5–8,5 nicht verlassen."],
+      "massnahmentyp": "MONI", "phase": "BET", "intervall": "wöchentlich",
+      "pflichtparameter": ["GSA_ID", "Probenahmestelle", "Messwert", "Labor"],
+      "parameter": {"name": "pH-Wert", "grenzwert": 8.5, "einheit": "pH", "norm": "ÖNORM EN ISO 10523"},
+      "dashboard_kategorie": "Laborprogramm", "aktiv": true
+    },
+    {
+      "auflagen_id": "L007", "fachbereich": "Labor", "zielsystem": "Probenahmeübersichtsplan",
+      "auflagentyp": "Sauerstoffgehalt messen",
+      "synonyme": ["O2-Gehalt bestimmen", "Sauerstoffmessung", "gelöster Sauerstoff", "O2-Monitoring"],
+      "beispielsaetze": ["Der Sauerstoffgehalt im Ablauf ist monatlich zu messen und zu protokollieren.", "Der Mindestsauerstoffgehalt von 6,0 mg/l O2 ist einzuhalten."],
+      "massnahmentyp": "MONI", "phase": "BET", "intervall": "monatlich",
+      "pflichtparameter": ["GSA_ID", "Probenahmestelle", "Messwert", "Labor"],
+      "parameter": {"name": "Sauerstoffgehalt", "grenzwert": 6.0, "einheit": "mg/l O2", "norm": "ÖNORM EN ISO 5814"},
+      "dashboard_kategorie": "Laborprogramm", "aktiv": true
+    },
+    {
+      "auflagen_id": "L008", "fachbereich": "Labor", "zielsystem": "Probenahmeübersichtsplan",
+      "auflagentyp": "Trübung messen",
+      "synonyme": ["Trübungsmessung", "NTU messen", "Schwebstoffe bestimmen", "Trübungskontrolle"],
+      "beispielsaetze": ["Die Trübung des Abwassers ist nach Regenereignissen zu kontrollieren und zu protokollieren.", "Die Trübung darf den Wert von 10 NTU nicht überschreiten."],
+      "massnahmentyp": "MONI", "phase": "BET", "intervall": "ereignisbezogen",
+      "pflichtparameter": ["GSA_ID", "Probenahmestelle", "Messwert", "Anlass"],
+      "parameter": {"name": "Trübung", "grenzwert": 10.0, "einheit": "NTU", "norm": "ÖNORM EN ISO 7027"},
+      "dashboard_kategorie": "Laborprogramm", "aktiv": true
+    },
+    {
+      "auflagen_id": "G005", "fachbereich": "Grünflächen", "zielsystem": "GUSTAV",
+      "auflagentyp": "Amphibienschutz einhalten",
+      "synonyme": ["Amphibiersperrzeit", "Laichzeit Schutz", "Froschschutz", "Amphibienwanderung"],
+      "beispielsaetze": ["Im Bereich der Laichgewässer sind zwischen 1. März und 31. Mai keine Erdarbeiten durchzuführen.", "Während der Amphibienwanderzeit sind Baustellen mit geeigneten Maßnahmen zu sichern."],
+      "massnahmentyp": "VERM", "phase": "BAU", "intervall": "jährlich",
+      "pflichtparameter": ["Bereich_km", "Sperrzeit_von", "Sperrzeit_bis", "Ausnahmen"],
+      "dashboard_kategorie": "Naturschutz", "aktiv": true
+    },
+    {
       "auflagen_id": "GIS001", "fachbereich": "GIS", "zielsystem": "GIS",
       "auflagentyp": "Inspektionselement georeferenzieren",
       "synonyme": ["GIS-Einmessung", "Koordinatenaufnahme", "GPS-Einmessung"],
