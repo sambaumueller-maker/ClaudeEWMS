@@ -1,0 +1,36 @@
+﻿GSA_ID,Bescheid_ID,GZ,Eingabe_GSA,GSA_Name,Anlagenverbund,Region,ABM,Strecke,Abschnitt,km_von,km_bis,Ausleitungstyp,§134_erforderlich,Status
+GSA_DB-000001,B-200802180001,WA1-W-21395/704,GSA-001,GSA01,5,Ost,Kaisermühlen,Donaukorridor,A01,88.6,94.3,Vorfluter,Ja,Produktiv
+GSA_DB-000002,B-200802180001,WA1-W-21395/704,GSA-002,GSA02,5,Ost,Kaisermühlen,Donaukorridor,A01,88.6,94.3,Vorfluter,Ja,Produktiv
+GSA_DB-000003,B-201405300002,WA1-W-10851/877,GSA-001,GSA01,5,Mitte,Walterskirchen,Tullner Feld,A06,192.4,206.7,Direkteinleitung,Ja,Produktiv
+GSA_DB-000004,B-201405300002,WA1-W-10851/877,GSA-002,GSA02,3,Mitte,Walterskirchen,Tullner Feld,A06,192.4,206.7,Mischform,Ja,Produktiv
+GSA_DB-000005,B-201405300002,WA1-W-10851/877,GSA-003,GSA03,3,Mitte,Walterskirchen,Tullner Feld,A06,192.4,206.7,Mischform,Ja,Produktiv
+GSA_DB-000006,B-201405300002,WA1-W-10851/877,GSA-004,GSA04,3,Mitte,Walterskirchen,Tullner Feld,A06,192.4,206.7,Versickerung,Ja,Produktiv
+GSA_DB-000007,B-201012070003,WA1-W-80284/227,GSA-001,GSA01,3,West,Oeynhausen,Innviertel,A09,71.1,78.6,Versickerung,Ja,Produktiv
+GSA_DB-000008,B-201012070003,WA1-W-80284/227,GSA-002,GSA02,3,West,Oeynhausen,Innviertel,A09,71.1,78.6,Vorfluter,Ja,Produktiv
+GSA_DB-000009,B-200704080004,WA1-W-57819/266,GSA-001,GSA01,4,Nord,Stockerau,Marchtal,A04,83.0,88.4,Vorfluter,Ja,Produktiv
+GSA_DB-000010,B-202006080005,WA1-W-17331/334,GSA-001,GSA01,5,West,Oeynhausen,Innviertel,A07,53.5,72.1,Mischform,Ja,Produktiv
+GSA_DB-000011,B-200803160006,WA1-W-80644/369,GSA-001,GSA01,2,West,Oeynhausen,Innviertel,A07,175.3,188.5,Direkteinleitung,Ja,Produktiv
+GSA_DB-000012,B-200803160006,WA1-W-80644/369,GSA-002,GSA02,1,West,Oeynhausen,Innviertel,A07,175.3,188.5,Mischform,Ja,Produktiv
+GSA_DB-000013,B-200803160006,WA1-W-80644/369,GSA-003,GSA03,3,West,Oeynhausen,Innviertel,A07,175.3,188.5,Direkteinleitung,Ja,Produktiv
+GSA_DB-000014,B-202004060007,WA1-W-60019/710,GSA-001,GSA01,4,Ost,Kaisermühlen,Donaukorridor,A09,18.3,22.3,Direkteinleitung,Nein,Produktiv
+GSA_DB-000015,B-202004060007,WA1-W-60019/710,GSA-002,GSA02,5,Ost,Kaisermühlen,Donaukorridor,A09,18.3,22.3,Vorfluter,Nein,Produktiv
+GSA_DB-000016,B-202102210008,WA1-W-76542/208,GSA-001,GSA01,1,West,Oeynhausen,Innviertel,A09,89.9,109.0,Mischform,Nein,Zurückgewiesen
+GSA_DB-000017,B-202102210008,WA1-W-76542/208,GSA-002,GSA02,3,West,Oeynhausen,Innviertel,A09,89.9,109.0,Vorfluter,Nein,Zurückgewiesen
+GSA_DB-000018,B-202102210008,WA1-W-76542/208,GSA-003,GSA03,1,West,Oeynhausen,Innviertel,A09,89.9,109.0,Mischform,Nein,Zurückgewiesen
+GSA_DB-000019,B-200707060009,WA1-W-41385/159,GSA-001,GSA01,3,Mitte,Walterskirchen,Tullner Feld,A02,160.9,171.2,Mischform,Ja,In Bearbeitung
+GSA_DB-000020,B-200707060009,WA1-W-41385/159,GSA-002,GSA02,3,Mitte,Walterskirchen,Tullner Feld,A02,160.9,171.2,Mischform,Ja,In Bearbeitung
+GSA_DB-000021,B-200707060009,WA1-W-41385/159,GSA-003,GSA03,3,Mitte,Walterskirchen,Tullner Feld,A02,160.9,171.2,Versickerung,Ja,In Bearbeitung
+GSA_DB-000022,B-201406290010,WA1-W-36365/830,GSA-001,GSA01,1,Mitte,Walterskirchen,Tullner Feld,A06,71.2,88.8,Vorfluter,Ja,Zurückgewiesen
+GSA_DB-000023,B-201406290010,WA1-W-36365/830,GSA-002,GSA02,4,Mitte,Walterskirchen,Tullner Feld,A06,71.2,88.8,Direkteinleitung,Ja,Zurückgewiesen
+GSA_DB-000024,B-201406290010,WA1-W-36365/830,GSA-003,GSA03,1,Mitte,Walterskirchen,Tullner Feld,A06,71.2,88.8,Vorfluter,Ja,Zurückgewiesen
+GSA_DB-000025,B-200912100011,WA1-W-17716/334,GSA-001,GSA01,2,Süd,St. Pölten,Ennstal,A06,89.3,94.7,Direkteinleitung,Nein,Produktiv
+GSA_DB-000026,B-200912100011,WA1-W-17716/334,GSA-002,GSA02,2,Süd,St. Pölten,Ennstal,A06,89.3,94.7,Versickerung,Nein,Produktiv
+GSA_DB-000027,B-200912100011,WA1-W-17716/334,GSA-003,GSA03,5,Süd,St. Pölten,Ennstal,A06,89.3,94.7,Versickerung,Nein,Produktiv
+GSA_DB-000028,B-201402170012,WA1-W-66498/462,GSA-001,GSA01,1,Nord,Stockerau,Marchtal,A08,20.5,30.5,Vorfluter,Ja,Produktiv
+GSA_DB-000029,B-200802230013,WA1-W-42742/995,GSA-001,GSA01,5,Ost,Kaisermühlen,Donaukorridor,A09,22.9,34.1,Vorfluter,Ja,Produktiv
+GSA_DB-000030,B-200802230013,WA1-W-42742/995,GSA-002,GSA02,3,Ost,Kaisermühlen,Donaukorridor,A09,22.9,34.1,Mischform,Ja,Produktiv
+GSA_DB-000031,B-200604260014,WA1-W-44760/902,GSA-001,GSA01,2,West,Oeynhausen,Innviertel,A07,95.4,112.8,Vorfluter,Ja,Produktiv
+GSA_DB-000032,B-200604260014,WA1-W-44760/902,GSA-002,GSA02,3,West,Oeynhausen,Innviertel,A07,95.4,112.8,Direkteinleitung,Ja,Produktiv
+GSA_DB-000033,B-200604260014,WA1-W-44760/902,GSA-003,GSA03,1,West,Oeynhausen,Innviertel,A07,95.4,112.8,Direkteinleitung,Ja,Produktiv
+GSA_DB-000034,B-200604260014,WA1-W-44760/902,GSA-004,GSA04,2,West,Oeynhausen,Innviertel,A07,95.4,112.8,Mischform,Ja,Produktiv
+GSA_DB-000035,B-201802070015,WA1-W-30635/158,GSA-001,GSA01,3,Mitte,Walterskirchen,Tullner Feld,A03,201.0,203.1,Versickerung,Ja,Produktiv

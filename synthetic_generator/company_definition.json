@@ -1,0 +1,59 @@
+{
+  "company": {
+    "name": "AquaNet Infrastruktur GmbH",
+    "short_name": "AquaNet",
+    "branche": "Infrastruktur / Leitungsnetzbetrieb",
+    "domain": "Wasserrecht",
+    "gruendungsjahr": 1987,
+    "hauptsitz": "Wien",
+    "mitarbeiter": 340,
+    "ci": {
+      "primary_color": "#005A8E",
+      "secondary_color": "#00A0C6",
+      "accent_color": "#F5A623"
+    },
+    "zielsysteme": {
+      "EBeH": "Elektronisches Betriebsbuch Hydrologie",
+      "GUSTAV": "Grünflächen- und Vegetationsmanagement",
+      "EBauH": "Elektronisches Baubuch Hydrologie",
+      "Probenahmeübersichtsplan": "Laborprogramm-Verwaltung",
+      "GIS": "GeoDatenSystem ArcGIS",
+      "DOXIS": "Dokumentenmanagement DOXIS4"
+    }
+  },
+  "organisation": {
+    "rollen": [
+      {"id": "BMG", "bezeichnung": "Bescheidmanager", "kuerzel": "BMG"},
+      {"id": "BUM-F", "bezeichnung": "BUM-Fachmitarbeiter", "kuerzel": "BUM-F"},
+      {"id": "BUM-E", "bezeichnung": "BUM-Experte", "kuerzel": "BUM-E"},
+      {"id": "LAB", "bezeichnung": "Laborbeauftragter", "kuerzel": "LAB"},
+      {"id": "OEK", "bezeichnung": "Ökologe", "kuerzel": "OEK"}
+    ],
+    "personen": [
+      {"id": "P001", "name": "Maria Hofbauer", "rolle": "BMG", "region": "Ost"},
+      {"id": "P002", "name": "Stefan Gruber", "rolle": "BMG", "region": "West"},
+      {"id": "P003", "name": "Anna Berger", "rolle": "BUM-F", "region": "alle"},
+      {"id": "P004", "name": "Klaus Pichler", "rolle": "BUM-E", "region": "alle"},
+      {"id": "P005", "name": "Eva Schneider", "rolle": "LAB", "region": "alle"},
+      {"id": "P006", "name": "Martin Wolf", "rolle": "OEK", "region": "alle"}
+    ],
+    "regionen": ["Nord", "Süd", "Ost", "West", "Mitte"],
+    "abms": [
+      {"id": "ABM-N", "name": "Stockerau", "region": "Nord"},
+      {"id": "ABM-S", "name": "St. Pölten", "region": "Süd"},
+      {"id": "ABM-O", "name": "Kaisermühlen", "region": "Ost"},
+      {"id": "ABM-W", "name": "Oeynhausen", "region": "West"},
+      {"id": "ABM-M", "name": "Walterskirchen", "region": "Mitte"}
+    ]
+  },
+  "netz": {
+    "gesamt_km": 847.3,
+    "strecken": [
+      {"id": "STR-001", "name": "Donaukorridor", "region": "Ost", "km": 124.5, "asg": false},
+      {"id": "STR-002", "name": "Marchtal", "region": "Nord", "km": 89.2, "asg": true},
+      {"id": "STR-003", "name": "Ennstal", "region": "Süd", "km": 156.8, "asg": false},
+      {"id": "STR-004", "name": "Innviertel", "region": "West", "km": 203.1, "asg": false},
+      {"id": "STR-005", "name": "Tullner Feld", "region": "Mitte", "km": 273.7, "asg": true}
+    ]
+  }
+}

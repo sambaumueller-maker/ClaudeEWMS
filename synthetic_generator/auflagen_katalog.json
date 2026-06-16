@@ -1,0 +1,210 @@
+{
+  "version": "1.0",
+  "domain": "Wasserrecht",
+  "erstellt": "2026-06-16",
+  "katalog": [
+    {
+      "auflagen_id": "B001", "fachbereich": "Bau", "zielsystem": "EBauH",
+      "auflagentyp": "Ölbindemittel bereitstellen",
+      "synonyme": ["Ölbindemittel vorhalten", "Ölsperre bereitstellen", "Havarieausrüstung Öl"],
+      "beispielsaetze": ["Auf der Baustelle sind stets ausreichende Mengen an Ölbindemitteln bereitzuhalten.", "Ölbindemittel sind in einem verschlossenen Behälter vor Ort vorzuhalten."],
+      "massnahmentyp": "VERM", "phase": "BAU", "intervall": "EINM",
+      "pflichtparameter": ["Menge_kg", "Lagerort"],
+      "dashboard_kategorie": "Bauphase-Sicherheit", "aktiv": true
+    },
+    {
+      "auflagen_id": "B002", "fachbereich": "Bau", "zielsystem": "EBauH",
+      "auflagentyp": "Baustellensicherung durchführen",
+      "synonyme": ["Absicherung Baustelle", "Baustellenabsperrung", "Verkehrssicherung"],
+      "beispielsaetze": ["Die Baustelle ist gemäß §90 StVO abzusichern.", "Während der Bauphase ist die Baustelle ordnungsgemäß zu sichern und zu beleuchten."],
+      "massnahmentyp": "VERM", "phase": "BAU", "intervall": "BEGL",
+      "pflichtparameter": ["Sicherungsart", "Verantwortlicher"],
+      "dashboard_kategorie": "Bauphase-Sicherheit", "aktiv": true
+    },
+    {
+      "auflagen_id": "B003", "fachbereich": "Bau", "zielsystem": "EBauH",
+      "auflagentyp": "Baustellenabwasser behandeln",
+      "synonyme": ["Bauwasser reinigen", "Abwasserbehandlung Bauphase", "Trübwasserbehandlung"],
+      "beispielsaetze": ["Anfallende Bauwässer sind vor Einleitung in das Gewässer zu behandeln.", "Trübe Bauwässer sind über Absetzbecken zu führen."],
+      "massnahmentyp": "VERM", "phase": "BAU", "intervall": "BEGL",
+      "pflichtparameter": ["Behandlungsart", "Einleitungspunkt"],
+      "dashboard_kategorie": "Bauphase-Umwelt", "aktiv": true
+    },
+    {
+      "auflagen_id": "B004", "fachbereich": "Bau", "zielsystem": "EBauH",
+      "auflagentyp": "Bodenaushub dokumentieren",
+      "synonyme": ["Aushubnachweis", "Erdaushub Dokumentation", "Aushubprotokoll"],
+      "beispielsaetze": ["Der anfallende Bodenaushub ist mengenmäßig zu erfassen und einer ordnungsgemäßen Entsorgung zuzuführen.", "Über den Verbleib des Aushubmaterials ist Buch zu führen."],
+      "massnahmentyp": "BEWS", "phase": "BAU", "intervall": "EINM",
+      "pflichtparameter": ["Menge_m3", "Entsorgungsnachweis"],
+      "dashboard_kategorie": "Bauphase-Dokumentation", "aktiv": true
+    },
+    {
+      "auflagen_id": "B005", "fachbereich": "Bau", "zielsystem": "EBauH",
+      "auflagentyp": "Ökologische Bauaufsicht beauftragen",
+      "synonyme": ["ÖBA beauftragen", "Baubegleitung Ökologie", "Ökobauaufsicht"],
+      "beispielsaetze": ["Für die Dauer der Bauarbeiten ist eine fachkundige ökologische Bauaufsicht zu bestellen.", "Die ökologische Bauaufsicht hat die Einhaltung der Umweltauflagen zu überwachen."],
+      "massnahmentyp": "BEGL", "phase": "BAU", "intervall": "BEGL",
+      "pflichtparameter": ["Name_OEK", "Beauftragungsdatum"],
+      "dashboard_kategorie": "Bauphase-Kontrolle", "aktiv": true
+    },
+    {
+      "auflagen_id": "W001", "fachbereich": "Betrieb Wasser", "zielsystem": "EBeH",
+      "auflagentyp": "Mahd durchführen",
+      "synonyme": ["Mähen", "Böschungsmahd", "Grünschnitt", "Mahd Böschung"],
+      "beispielsaetze": ["Die Böschungen sind mindestens zweimal jährlich zu mähen und das Mähgut ist abzutragen.", "Die Uferböschungen sind jährlich zu mähen.", "Die begrünten Flächen sind regelmäßig zu mähen und freizuhalten."],
+      "massnahmentyp": "PERI", "phase": "BET", "intervall": "2x_jährlich",
+      "pflichtparameter": ["Fläche_m2", "Häufigkeit", "Mähgut_Entsorgung"],
+      "dashboard_kategorie": "Grünpflege", "aktiv": true
+    },
+    {
+      "auflagen_id": "W002", "fachbereich": "Betrieb Wasser", "zielsystem": "EBeH",
+      "auflagentyp": "Sedimente entfernen",
+      "synonyme": ["Becken räumen", "Sedimenträumung", "Schlammräumung", "Reinigung Rückhaltebecken"],
+      "beispielsaetze": ["Das Rückhaltebecken ist bei Bedarf, mindestens jedoch alle 3 Jahre zu räumen.", "Sedimentablagerungen sind regelmäßig zu entfernen."],
+      "massnahmentyp": "PERI", "phase": "BET", "intervall": "3-jährlich",
+      "pflichtparameter": ["Sedimentmenge_m3", "Entsorgungsnachweis", "Becken_ID"],
+      "dashboard_kategorie": "Anlagenpflege", "aktiv": true
+    },
+    {
+      "auflagen_id": "W003", "fachbereich": "Betrieb Wasser", "zielsystem": "EBeH",
+      "auflagentyp": "Schieber kontrollieren",
+      "synonyme": ["Armatur prüfen", "Schieberkontrolle", "Armaturen warten", "Schieber warten"],
+      "beispielsaetze": ["Die Schieber und Absperrorgane sind jährlich auf Funktionstüchtigkeit zu prüfen.", "Sämtliche Armaturen sind regelmäßig auf Dichtheit zu kontrollieren."],
+      "massnahmentyp": "PERI", "phase": "BET", "intervall": "jährlich",
+      "pflichtparameter": ["Schieber_ID", "Prüfergebnis", "Nächste_Prüfung"],
+      "dashboard_kategorie": "Anlagenkontrolle", "aktiv": true
+    },
+    {
+      "auflagen_id": "W004", "fachbereich": "Betrieb Wasser", "zielsystem": "EBeH",
+      "auflagentyp": "Rückhaltebecken inspizieren",
+      "synonyme": ["Beckenprüfung", "Inspektion Rückhaltebecken", "Beckenbegehung", "RHB Kontrolle"],
+      "beispielsaetze": ["Das Rückhaltebecken ist halbjährlich zu inspizieren.", "Eine jährliche Begehung und Inspektion des Rückhaltebeckens ist durchzuführen."],
+      "massnahmentyp": "PERI", "phase": "BET", "intervall": "halbjährlich",
+      "pflichtparameter": ["Becken_ID", "Inspektionsdatum", "Befund"],
+      "dashboard_kategorie": "Anlagenkontrolle", "aktiv": true
+    },
+    {
+      "auflagen_id": "W005", "fachbereich": "Betrieb Wasser", "zielsystem": "EBeH",
+      "auflagentyp": "Betriebsbuch führen",
+      "synonyme": ["Dokumentation führen", "Betriebstagebuch", "Betriebsaufzeichnungen"],
+      "beispielsaetze": ["Über alle Betriebsvorgänge ist ein Betriebsbuch zu führen.", "Sämtliche Wartungs- und Kontrollmaßnahmen sind im Betriebsbuch zu dokumentieren."],
+      "massnahmentyp": "MONI", "phase": "BET", "intervall": "laufend",
+      "pflichtparameter": ["Anlage_ID", "Eintragsdatum", "Ereignisart"],
+      "dashboard_kategorie": "Dokumentation", "aktiv": true
+    },
+    {
+      "auflagen_id": "W006", "fachbereich": "Betrieb Wasser", "zielsystem": "EBeH",
+      "auflagentyp": "§134 Überprüfung durchführen",
+      "synonyme": ["Externe Überprüfung", "WRG §134 Prüfung", "Behördenprüfung Wasser"],
+      "beispielsaetze": ["Die Anlage ist gemäß §134 WRG einer periodischen Überprüfung zu unterziehen.", "Eine Überprüfung nach §134 WRG ist alle 10 Jahre durchzuführen."],
+      "massnahmentyp": "BEGL", "phase": "BET", "intervall": "10-jährlich",
+      "pflichtparameter": ["Prüfer", "Prüfdatum", "Prüfbericht_Ref"],
+      "dashboard_kategorie": "Behördenprüfung", "aktiv": true
+    },
+    {
+      "auflagen_id": "G001", "fachbereich": "Grünflächen", "zielsystem": "GUSTAV",
+      "auflagentyp": "Neophyten entfernen",
+      "synonyme": ["invasive Arten entfernen", "Neophytenbekämpfung", "Japanknöterich entfernen", "Drüsiges Springkraut bekämpfen"],
+      "beispielsaetze": ["Invasive Neophyten sind unverzüglich nach Auftreten zu entfernen und fachgerecht zu entsorgen.", "Vorkommen von Japanknöterich (Fallopia japonica) sind regelmäßig zu kontrollieren und zu bekämpfen."],
+      "massnahmentyp": "PERI", "phase": "BET", "intervall": "jährlich",
+      "pflichtparameter": ["Fläche_m2", "Neophytenart", "Bekämpfungsmethode"],
+      "dashboard_kategorie": "Naturschutz", "aktiv": true
+    },
+    {
+      "auflagen_id": "G002", "fachbereich": "Grünflächen", "zielsystem": "GUSTAV",
+      "auflagentyp": "Gehölzpflege durchführen",
+      "synonyme": ["Strauchschnitt", "Gehölzschnitt", "Baumpflege", "Rückschnitt Gehölze"],
+      "beispielsaetze": ["Die Gehölze sind in einem Abstand von 5 Jahren fachgerecht zurückzuschneiden.", "Strauch- und Baumschnitt ist nach fachlichen Grundsätzen durchzuführen."],
+      "massnahmentyp": "PERI", "phase": "BET", "intervall": "5-jährlich",
+      "pflichtparameter": ["Fläche_m2", "Schnittart", "Entsorgung_Schnittgut"],
+      "dashboard_kategorie": "Grünpflege", "aktiv": true
+    },
+    {
+      "auflagen_id": "G003", "fachbereich": "Grünflächen", "zielsystem": "GUSTAV",
+      "auflagentyp": "Pflegeplan einhalten",
+      "synonyme": ["Grünpflegekonzept", "Landschaftspflegeplan", "Pflegekonzept Grünflächen"],
+      "beispielsaetze": ["Die Pflege der Ausgleichsflächen hat gemäß dem genehmigten Pflegeplan zu erfolgen.", "Der Pflegeplan ist jährlich umzusetzen und die Maßnahmen sind zu dokumentieren."],
+      "massnahmentyp": "PERI", "phase": "BET", "intervall": "jährlich",
+      "pflichtparameter": ["Pflegeplan_Ref", "Umsetzungsdatum", "Abweichungen"],
+      "dashboard_kategorie": "Naturschutz", "aktiv": true
+    },
+    {
+      "auflagen_id": "G004", "fachbereich": "Grünflächen", "zielsystem": "GUSTAV",
+      "auflagentyp": "Neophytenmonitoring durchführen",
+      "synonyme": ["Neophytenkartierung", "Monitoring invasive Arten", "Bestandserhebung Neophyten"],
+      "beispielsaetze": ["Der Bestand an Neophyten ist jährlich zu kartieren und die Ergebnisse sind der Behörde zu melden.", "Eine jährliche Bestandserhebung invasiver Arten ist durchzuführen."],
+      "massnahmentyp": "MONI", "phase": "BET", "intervall": "jährlich",
+      "pflichtparameter": ["Kartierdatum", "Kartierungsergebnis", "Meldung_an_Behoerde"],
+      "dashboard_kategorie": "Naturschutz", "aktiv": true
+    },
+    {
+      "auflagen_id": "L001", "fachbereich": "Labor", "zielsystem": "Probenahmeübersichtsplan",
+      "auflagentyp": "Zink messen",
+      "synonyme": ["Zink-Messung", "Zinkgehalt bestimmen", "Parameter Zink"],
+      "beispielsaetze": ["Der Parameter Zink ist jährlich im Ablauf des Rückhaltebeckens zu messen.", "Die Zinkkonzentration im Gewässer ist jährlich zu bestimmen."],
+      "massnahmentyp": "MONI", "phase": "BET", "intervall": "jährlich",
+      "pflichtparameter": ["GSA_ID", "Probenahmestelle", "Messwert", "Einheit", "Labor"],
+      "parameter": {"name": "Zink", "grenzwert": 2.0, "einheit": "mg/l", "norm": "ÖNORM EN ISO 11885"},
+      "dashboard_kategorie": "Laborprogramm", "aktiv": true
+    },
+    {
+      "auflagen_id": "L002", "fachbereich": "Labor", "zielsystem": "Probenahmeübersichtsplan",
+      "auflagentyp": "Blei messen",
+      "synonyme": ["Blei-Messung", "Bleigehalt bestimmen", "Parameter Blei"],
+      "beispielsaetze": ["Die Bleikonzentration ist jährlich zu messen.", "Der Bleigehalt im Ablaufwasser ist einmal jährlich zu bestimmen."],
+      "massnahmentyp": "MONI", "phase": "BET", "intervall": "jährlich",
+      "pflichtparameter": ["GSA_ID", "Probenahmestelle", "Messwert", "Einheit", "Labor"],
+      "parameter": {"name": "Blei", "grenzwert": 0.5, "einheit": "mg/l", "norm": "ÖNORM EN ISO 11885"},
+      "dashboard_kategorie": "Laborprogramm", "aktiv": true
+    },
+    {
+      "auflagen_id": "L003", "fachbereich": "Labor", "zielsystem": "Probenahmeübersichtsplan",
+      "auflagentyp": "KW-Index messen",
+      "synonyme": ["Kohlenwasserstoffindex", "KW-Index bestimmen", "Mineralölkohlenwasserstoffe"],
+      "beispielsaetze": ["Der KW-Index ist halbjährlich im Ablauf zu messen.", "Die Konzentration an Mineralölkohlenwasserstoffen ist regelmäßig zu kontrollieren."],
+      "massnahmentyp": "MONI", "phase": "BET", "intervall": "halbjährlich",
+      "pflichtparameter": ["GSA_ID", "Probenahmestelle", "Messwert", "Einheit", "Labor"],
+      "parameter": {"name": "KW-Index", "grenzwert": 10.0, "einheit": "mg/l", "norm": "ÖNORM EN ISO 9377-2"},
+      "dashboard_kategorie": "Laborprogramm", "aktiv": true
+    },
+    {
+      "auflagen_id": "L004", "fachbereich": "Labor", "zielsystem": "Probenahmeübersichtsplan",
+      "auflagentyp": "Nickel messen",
+      "synonyme": ["Nickel-Messung", "Nickelgehalt", "Parameter Nickel"],
+      "beispielsaetze": ["Der Nickelgehalt ist entsprechend der EU-VO 2023/915 jährlich zu messen.", "Nickel ist einmal jährlich im Ablauf zu bestimmen."],
+      "massnahmentyp": "MONI", "phase": "BET", "intervall": "jährlich",
+      "pflichtparameter": ["GSA_ID", "Probenahmestelle", "Messwert", "Einheit", "Labor"],
+      "parameter": {"name": "Nickel", "grenzwert": 0.2, "einheit": "mg/l", "norm": "EU-VO 2023/915"},
+      "dashboard_kategorie": "Laborprogramm", "aktiv": true
+    },
+    {
+      "auflagen_id": "L005", "fachbereich": "Labor", "zielsystem": "Probenahmeübersichtsplan",
+      "auflagentyp": "Cadmium messen",
+      "synonyme": ["Cadmium-Messung", "Cadmiumgehalt", "Parameter Cadmium"],
+      "beispielsaetze": ["Cadmium ist jährlich im Ablauf zu messen und darf den Grenzwert von 0,1 mg/l nicht überschreiten."],
+      "massnahmentyp": "MONI", "phase": "BET", "intervall": "jährlich",
+      "pflichtparameter": ["GSA_ID", "Probenahmestelle", "Messwert", "Einheit", "Labor"],
+      "parameter": {"name": "Cadmium", "grenzwert": 0.1, "einheit": "mg/l", "norm": "EU-VO 2023/915"},
+      "dashboard_kategorie": "Laborprogramm", "aktiv": true
+    },
+    {
+      "auflagen_id": "GIS001", "fachbereich": "GIS", "zielsystem": "GIS",
+      "auflagentyp": "Inspektionselement georeferenzieren",
+      "synonyme": ["GIS-Einmessung", "Koordinatenaufnahme", "GPS-Einmessung"],
+      "beispielsaetze": ["Alle Anlagenteile sind in das GIS-System einzumessen.", "Die Lage der Gewässerschutzanlage ist geodätisch zu bestimmen und im GIS zu erfassen."],
+      "massnahmentyp": "EINM", "phase": "BAU", "intervall": "EINM",
+      "pflichtparameter": ["X_Koordinate", "Y_Koordinate", "Bezugssystem", "Elementtyp"],
+      "dashboard_kategorie": "GIS-Status", "aktiv": true
+    },
+    {
+      "auflagen_id": "GIS002", "fachbereich": "GIS", "zielsystem": "GIS",
+      "auflagentyp": "GPS-Koordinaten validieren",
+      "synonyme": ["Koordinaten prüfen", "GIS-Abgleich", "Lageprüfung"],
+      "beispielsaetze": ["Die im GIS erfassten Koordinaten sind nach Fertigstellung gegen die Ist-Lage abzugleichen.", "Eine Validierung der GIS-Daten ist nach Bauabschluss durchzuführen."],
+      "massnahmentyp": "BEWS", "phase": "BAU", "intervall": "EINM",
+      "pflichtparameter": ["GIS_ID", "Validierungsdatum", "Abweichung_m"],
+      "dashboard_kategorie": "GIS-Status", "aktiv": true
+    }
+  ]
+}

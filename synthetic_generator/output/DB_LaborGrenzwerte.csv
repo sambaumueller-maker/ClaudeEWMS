@@ -1,0 +1,46 @@
+﻿Labor_ID,Bescheid_ID,GZ,Auflagen_ID_laut_Bescheid,GSA_ID,GSA_Name,Parameter,Grenzwert,Messwert,Einheit,Norm,Intervall,Grenzwert_eingehalten,Zielsystem,Status
+LAB-000001,B-200802180001,WA1-W-21395/704,46. Zink messen,GSA-002,GSA02,Zink,2.0,2.344,mg/l,ÖNORM EN ISO 11885,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000002,B-200802180001,WA1-W-21395/704,15. KW-Index messen,GSA-001,GSA01,KW-Index,10.0,5.676,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000003,B-201405300002,WA1-W-10851/877,12. Zink messen,GSA-004,GSA04,Zink,2.0,2.67,mg/l,ÖNORM EN ISO 11885,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000004,B-201405300002,WA1-W-10851/877,5. Blei messen,GSA-004,GSA04,Blei,0.5,0.191,mg/l,ÖNORM EN ISO 11885,jährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000005,B-201405300002,WA1-W-10851/877,10. KW-Index messen,GSA-001,GSA01,KW-Index,10.0,13.933,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000006,B-201405300002,WA1-W-10851/877,49. Nickel messen,GSA-001,GSA01,Nickel,0.2,0.191,mg/l,EU-VO 2023/915,jährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000007,B-201405300002,WA1-W-10851/877,25. Cadmium messen,GSA-002,GSA02,Cadmium,0.1,0.063,mg/l,EU-VO 2023/915,jährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000008,B-201012070003,WA1-W-80284/227,10. Zink messen,GSA-001,GSA01,Zink,2.0,0.965,mg/l,ÖNORM EN ISO 11885,jährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000009,B-201012070003,WA1-W-80284/227,48. KW-Index messen,GSA-002,GSA02,KW-Index,10.0,4.368,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000010,B-200704080004,WA1-W-57819/266,27. KW-Index messen,GSA-001,GSA01,KW-Index,10.0,10.371,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000011,B-200704080004,WA1-W-57819/266,27. Nickel messen,GSA-001,GSA01,Nickel,0.2,0.206,mg/l,EU-VO 2023/915,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000012,B-202006080005,WA1-W-17331/334,2. KW-Index messen,GSA-001,GSA01,KW-Index,10.0,4.742,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000013,B-202006080005,WA1-W-17331/334,27. Nickel messen,GSA-001,GSA01,Nickel,0.2,0.278,mg/l,EU-VO 2023/915,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000014,B-200803160006,WA1-W-80644/369,16. Zink messen,GSA-001,GSA01,Zink,2.0,2.483,mg/l,ÖNORM EN ISO 11885,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000015,B-200803160006,WA1-W-80644/369,21. Blei messen,GSA-002,GSA02,Blei,0.5,0.652,mg/l,ÖNORM EN ISO 11885,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000016,B-200803160006,WA1-W-80644/369,43. KW-Index messen,GSA-002,GSA02,KW-Index,10.0,13.613,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000017,B-200803160006,WA1-W-80644/369,38. Nickel messen,GSA-001,GSA01,Nickel,0.2,0.252,mg/l,EU-VO 2023/915,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000018,B-200803160006,WA1-W-80644/369,34. Cadmium messen,GSA-002,GSA02,Cadmium,0.1,0.109,mg/l,EU-VO 2023/915,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000019,B-202004060007,WA1-W-60019/710,20. KW-Index messen,GSA-001,GSA01,KW-Index,10.0,6.568,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000020,B-202004060007,WA1-W-60019/710,23. Nickel messen,GSA-001,GSA01,Nickel,0.2,0.092,mg/l,EU-VO 2023/915,jährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000021,B-202102210008,WA1-W-76542/208,44. KW-Index messen,GSA-002,GSA02,KW-Index,10.0,3.812,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,Ja,Probenahmeübersichtsplan,Zurückgewiesen
+LAB-000022,B-202102210008,WA1-W-76542/208,20. Nickel messen,GSA-002,GSA02,Nickel,0.2,0.212,mg/l,EU-VO 2023/915,jährlich,NEIN,Probenahmeübersichtsplan,Zurückgewiesen
+LAB-000023,B-200707060009,WA1-W-41385/159,13. Zink messen,GSA-001,GSA01,Zink,2.0,2.091,mg/l,ÖNORM EN ISO 11885,jährlich,NEIN,Probenahmeübersichtsplan,In Bearbeitung
+LAB-000024,B-200707060009,WA1-W-41385/159,44. KW-Index messen,GSA-003,GSA03,KW-Index,10.0,9.911,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,Ja,Probenahmeübersichtsplan,In Bearbeitung
+LAB-000025,B-201406290010,WA1-W-36365/830,30. Zink messen,GSA-003,GSA03,Zink,2.0,2.08,mg/l,ÖNORM EN ISO 11885,jährlich,NEIN,Probenahmeübersichtsplan,Zurückgewiesen
+LAB-000026,B-201406290010,WA1-W-36365/830,38. Blei messen,GSA-003,GSA03,Blei,0.5,0.602,mg/l,ÖNORM EN ISO 11885,jährlich,NEIN,Probenahmeübersichtsplan,Zurückgewiesen
+LAB-000027,B-201406290010,WA1-W-36365/830,44. KW-Index messen,GSA-002,GSA02,KW-Index,10.0,8.186,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,Ja,Probenahmeübersichtsplan,Zurückgewiesen
+LAB-000028,B-201406290010,WA1-W-36365/830,21. Nickel messen,GSA-003,GSA03,Nickel,0.2,0.202,mg/l,EU-VO 2023/915,jährlich,NEIN,Probenahmeübersichtsplan,Zurückgewiesen
+LAB-000029,B-201406290010,WA1-W-36365/830,45. Cadmium messen,GSA-003,GSA03,Cadmium,0.1,0.101,mg/l,EU-VO 2023/915,jährlich,NEIN,Probenahmeübersichtsplan,Zurückgewiesen
+LAB-000030,B-200912100011,WA1-W-17716/334,35. Zink messen,GSA-003,GSA03,Zink,2.0,1.476,mg/l,ÖNORM EN ISO 11885,jährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000031,B-200912100011,WA1-W-17716/334,30. KW-Index messen,GSA-001,GSA01,KW-Index,10.0,5.333,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000032,B-201402170012,WA1-W-66498/462,34. Zink messen,GSA-001,GSA01,Zink,2.0,2.015,mg/l,ÖNORM EN ISO 11885,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000033,B-201402170012,WA1-W-66498/462,31. Blei messen,GSA-001,GSA01,Blei,0.5,0.527,mg/l,ÖNORM EN ISO 11885,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000034,B-201402170012,WA1-W-66498/462,29. KW-Index messen,GSA-001,GSA01,KW-Index,10.0,6.543,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000035,B-201402170012,WA1-W-66498/462,9. Nickel messen,GSA-001,GSA01,Nickel,0.2,0.199,mg/l,EU-VO 2023/915,jährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000036,B-201402170012,WA1-W-66498/462,39. Cadmium messen,GSA-001,GSA01,Cadmium,0.1,0.086,mg/l,EU-VO 2023/915,jährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000037,B-200802230013,WA1-W-42742/995,33. Zink messen,GSA-001,GSA01,Zink,2.0,2.045,mg/l,ÖNORM EN ISO 11885,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000038,B-200802230013,WA1-W-42742/995,23. Blei messen,GSA-001,GSA01,Blei,0.5,0.569,mg/l,ÖNORM EN ISO 11885,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000039,B-200802230013,WA1-W-42742/995,36. KW-Index messen,GSA-001,GSA01,KW-Index,10.0,13.22,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000040,B-200802230013,WA1-W-42742/995,12. Nickel messen,GSA-002,GSA02,Nickel,0.2,0.228,mg/l,EU-VO 2023/915,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000041,B-200802230013,WA1-W-42742/995,1. Cadmium messen,GSA-002,GSA02,Cadmium,0.1,0.092,mg/l,EU-VO 2023/915,jährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000042,B-200604260014,WA1-W-44760/902,39. KW-Index messen,GSA-004,GSA04,KW-Index,10.0,6.005,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000043,B-200604260014,WA1-W-44760/902,28. Nickel messen,GSA-001,GSA01,Nickel,0.2,0.209,mg/l,EU-VO 2023/915,jährlich,NEIN,Probenahmeübersichtsplan,Produktiv
+LAB-000044,B-201802070015,WA1-W-30635/158,26. Zink messen,GSA-001,GSA01,Zink,2.0,0.853,mg/l,ÖNORM EN ISO 11885,jährlich,Ja,Probenahmeübersichtsplan,Produktiv
+LAB-000045,B-201802070015,WA1-W-30635/158,11. KW-Index messen,GSA-001,GSA01,KW-Index,10.0,13.117,mg/l,ÖNORM EN ISO 9377-2,halbjährlich,NEIN,Probenahmeübersichtsplan,Produktiv
